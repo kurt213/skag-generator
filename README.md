@@ -5,6 +5,17 @@ This tool uses a simple excel template input that once populated and the script 
 
 ## Getting Started
 
-To be documented...
+These instructions will get the project set up on your local machine for running the tool.
 
-### Test
+### Prerequisites
+
+1) Install Python (Version 3+) on your local machine. To check if you have Python running and setup correctly, in terminal (Mac/Linux) or Windows (Command Prompt) type 'python' or 'python3'. You should see something similar to the below
+
+```
+Python 3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 21:26:53) [MSC v.1916 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+If you see this, great! type 'quit()' to exit the Python shell
+
+To be continued...
