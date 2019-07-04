@@ -22,7 +22,7 @@ pip install virtualenv
 I have provided a requirements.txt file that can be run to automatically install all necessary packages for the SKAG tool.
 Navigate to the directory where this repository is stored (the root of the folder /skag-generator) and type:
 ```
-install -r requirements.txt
+pip install -r requirements.txt
 ```
 Once installed, you can enter 'pip list' into the command prompt and should see something similar to below:
 ```
