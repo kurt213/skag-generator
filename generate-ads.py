@@ -141,7 +141,6 @@ final_url = excel_input.read_column(14)
 max_ad_list = max(len(i) for i in [headline_1, headline_2, headline_3, desc_line_1, desc_line_2, desc_line_3, path_1, path_2])
 
 
-
 # In[4]:
 # Create keyword tuples list
 keyword_input = KeywordList(keyword_1, keyword_2, keyword_3, keyword_4)
@@ -192,8 +191,7 @@ for kw in kw_base_list:
                         ))
     
 
-
-# In[8]:
+# In[5]:
 sheet_output = SheetOutput(adgroups_list, keywords_list, ads_list)
 try:
     sheet_output.convert_to_csv()
@@ -206,7 +204,6 @@ try:
     print('skag excel created successfully')
 except:
     print('error creating skag excel')
-
 
 
 #%%
