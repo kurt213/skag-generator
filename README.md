@@ -9,9 +9,9 @@ These instructions will get the project set up on your local machine for running
 
 ### Prerequisites
 
-1) Python (version 3+) installed
-2) pip package installer installed (usually installed with python versions later than 2.7.9 or 3.4)
-3) (optional) virtualenv package installed 
+1. Python (version 3+) installed
+2. pip package installer installed (usually installed with python versions later than 2.7.9 or 3.4)
+3. (optional) virtualenv package installed 
 ```
 pip install virtualenv
 ```
@@ -57,4 +57,44 @@ skag excel created successfully
 
 The 'output' folder should now contain the relevant SKAG files in a format ready to be uploaded to Google Ads Editor
 
-To be continued...
+#### Excel File
+
+The 'input_file' contains a pre-populated setup for an ad campaign for footwear. I'll be referring to this example going forward through the step by step
+
+1. Input campaign name
+2. Choose what keyword match types you want - input 'Yes' or 'No':
+    - Exact - [red shoes for sale]
+    - Phrase - "red shoes for sale"
+    - Broad Match Modifier - +red +shoes +for +sale
+3. Row 10 onwards are for keyword combinations and ad copy
+4. The script will combine and create all possible combinations of the keywords included e.g.
+```
+red trainers deal
+black desert boots for sale
+green shoes accessories
+```
+5. The ad copy rows will create multiple variations of ads, but unlike keywords, will not mix and match to create various combinations. That function is built in to Google's 'Responsive Search Ads' and therefore does not require dynamic creation in thie script. These ads are specifically for 'Expanded Text Ads'
+    1. Input ad text
+    2. Placeholders can be used to substitute in keywords into ads using 'kw1', 'kw2' etc.
+    3. The spreadsheet automatically calculates and alerts the user (Row 8) if their combination of ad copy and keywords will be over ad character limits
+```
+Example output:
+kw2 in every colour => shoes in every colour
+kw2 kw3 - boots for sale
+kw1 kw2 for sale => brown desert boots for sale
+```
+6. Enter final URL - can use dynamic keyword placeholders if necessary
+7. Save input_file and run Python script
+
+## Other Information
+
+### Further Notes
+
+Please don't hesitate to provide feedback, feature improvements and bugs on this repository.
+
+### To Do
+
+- Include template for Responsive Search Ads
+- Lock down Excel Spreadsheet 
+- Code structure - separate out classes into separate modules
+
