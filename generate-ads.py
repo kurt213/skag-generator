@@ -195,7 +195,18 @@ for kw in kw_base_list:
 
 # In[8]:
 sheet_output = SheetOutput(adgroups_list, keywords_list, ads_list)
-sheet_output.convert_to_csv()
-sheet_output.convert_to_excel()
+try:
+    sheet_output.convert_to_csv()
+    print('skag csv created successfully')
+except:
+    print('error creating skag csv')
+
+try:
+    sheet_output.convert_to_excel()
+    print('skag excel created successfully')
+except:
+    print('error creating skag excel')
+
+
 
 #%%
