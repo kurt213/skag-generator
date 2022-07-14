@@ -83,7 +83,7 @@ class KeywordManipulate:
 class SheetOutput:
 
     ad_group_headers = ('Campaign', 'Ad Group', 'Ad Group Status', 'Max CPC')
-    keyword_headers = ('Campaign', 'Ad Group', 'Keyword', 'Status', 'Max CPC', 'Final URL')
+    keyword_headers = ('Campaign', 'Ad Group', 'Keyword', 'Status', 'Max CPC', 'Match Type', 'Final URL')
     ad_headers = ('Campaign', 'Ad Group', 'Headline 1', 'Headline 2', 'Headline 3', 
                     'Description Line 1', 'Description Line 2', 'Description Line 3',
                     'Path 1', 'Path 2', 'Final URL')
@@ -98,12 +98,12 @@ class SheetOutput:
         self.df_ads = pd.DataFrame(data=ads_sheet, columns=self.ad_headers)
     
     def convert_to_csv(self):
-        self.df_ad_groups.to_csv('Output/ad_groups_' + self.time_now + '.csv', index=False)
-        self.df_keywords.to_csv('Output/keywords_' + self.time_now + '.csv', index=False)
-        self.df_ads.to_csv('Output/ads_' + self.time_now + '.csv', index=False)
+        self.df_ad_groups.to_csv('../Output/ad_groups_' + self.time_now + '.csv', index=False)
+        self.df_keywords.to_csv('../Output/keywords_' + self.time_now + '.csv', index=False)
+        self.df_ads.to_csv('../Output/ads_' + self.time_now + '.csv', index=False)
 
     def convert_to_excel(self):
-        writer = pd.ExcelWriter('Output/skag_output_' + self.time_now + '.xlsx', engine='xlsxwriter')
+        writer = pd.ExcelWriter('../Output/skag_output_' + self.time_now + '.xlsx', engine='xlsxwriter')
         self.df_ad_groups.to_excel(writer, sheet_name='Ad Groups', index=False)
         self.df_keywords.to_excel(writer, sheet_name='Keywords', index=False)
         self.df_ads.to_excel(writer, sheet_name='Ads', index=False)
@@ -113,7 +113,7 @@ class SheetOutput:
 
 # In[3]:
 # set excel file
-ads_input = ("input_file.xlsx")
+ads_input = ("input_file.xls")
 excel_input = SheetInput(ads_input)
 
 # set param variables
@@ -166,14 +166,17 @@ for kw in kw_base_list:
     word_sub = KeywordManipulate(kw)
     url_replace = word_sub.sub_kw(final_url[0])
     if (exact_match == 'Yes'):
-        match_keyword = keyword_convert.exact_match(kw)
-        keywords_list.append((campaign_name, ad_group_name, keyword_status, max_cpc, match_keyword, url_replace))
+        keyword = keyword_convert.exact_match(kw)
+        match_type = 'Exact'
+        keywords_list.append((campaign_name, ad_group_name, keyword, keyword_status, max_cpc, match_type, url_replace))
     if (phrase_match == 'Yes'):
-        match_keyword = keyword_convert.phrase_match(kw)
-        keywords_list.append((campaign_name, ad_group_name, keyword_status, max_cpc, match_keyword, url_replace))
+        keyword = keyword_convert.phrase_match(kw)
+        match_type = 'Phrase'
+        keywords_list.append((campaign_name, ad_group_name, keyword, keyword_status, max_cpc, match_type, url_replace))
     if (bmm == 'Yes'):
-        match_keyword = keyword_convert.broad_match(kw)
-        keywords_list.append((campaign_name, ad_group_name, keyword_status, max_cpc, match_keyword, url_replace))
+        keyword = keyword_convert.broad_match(kw)
+        match_type = 'Broad'
+        keywords_list.append((campaign_name, ad_group_name, keyword, keyword_status, max_cpc, match_type, url_replace))
 
     # Ads - loop through combinations and generate
     for a in range(0, max_ad_list):
